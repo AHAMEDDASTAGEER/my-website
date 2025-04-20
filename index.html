@@ -1,140 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apology and Love</title>
-
+  <meta charset="UTF-8">
+  <title>To My Love</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #ffe6ea; /* very light rose */
-      font-family: Arial, sans-serif;
-      color: darkred;
+      height: 100vh;
+      background-color: lightpink;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      animation: fadeIn 2s ease-in;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .heart {
+      position: relative;
+      width: 300px;
+      height: 270px;
+      background-color: red;
+      transform: rotate(-45deg);
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 270px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -150px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 150px;
+      top: 0;
     }
 
     .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      color: white;
       text-align: center;
-      font-size: 24px;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
     }
 
-    .message:hover {
-      transform: scale(1.05);
-    }
-
-    .emoji {
-      font-size: 28px;
-      animation: float 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(0px);
+    @keyframes pulse {
+      0% {
+        transform: scale(1) rotate(-45deg);
       }
-      to {
-        transform: translateY(-10px);
+      50% {
+        transform: scale(1.1) rotate(-45deg);
       }
-    }
-
-    canvas {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
+      100% {
+        transform: scale(1) rotate(-45deg);
+      }
     }
   </style>
 </head>
 <body>
+  <div class="heart" onclick="alert('I’m really sorry, and I love you deeply, ummu!')">
+    <div class="message">
+      <!-- Sorry 50 times -->
+      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
+      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
+      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
+      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
+      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br><br>
 
-  <canvas id="confetti"></canvas>
-
-  <div class="message" onclick="showMessage()">
-    <p>
-      Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry,<br/>
-      Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry,<br/>
-      Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry,<br/>
-      Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry,<br/>
-      Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry, Sorry,
-    </p>
-    <p>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,<br/>
-      Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you, Love you,
-    </p>
-    <p class="emoji">
-      😔❤️😔❤️😔❤️😔❤️🥺💕🥺💕🥺💕🥹💖💘💝💌😍😍
-    </p>
+      <!-- Love you 100 times -->
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
+      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,
+    </div>
   </div>
-
-  <script>
-    function showMessage() {
-      alert("I'm sorry and I love you!");
-    }
-
-    // Confetti Effect 🎉
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const confetti = [];
-    const colors = ["#ff4d4d", "#ff99cc", "#ffcccc", "#cc3366", "#ff6699"];
-
-    for (let i = 0; i < 150; i++) {
-      confetti.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 6 + 2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        speedY: Math.random() * 3 + 1,
-        speedX: Math.random() * 2 - 1,
-      });
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confetti.forEach((c) => {
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, c.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = c.color;
-        ctx.fill();
-        c.y += c.speedY;
-        c.x += c.speedX;
-
-        if (c.y > canvas.height) c.y = -10;
-        if (c.x > canvas.width) c.x = 0;
-        if (c.x < 0) c.x = canvas.width;
-      });
-      requestAnimationFrame(draw);
-    }
-
-    draw();
-  </script>
 </body>
 </html>
