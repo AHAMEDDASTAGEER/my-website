@@ -5,98 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy 1st Anniversary ❤️ 12‑11‑2025</title>
   <style>
-    :root{
-      --red:#ff2950;         /* primary red */
-      --soft-pink:#ffd6e0;   /* light pink */
-      --rose:#ff7a92;        /* accent */
-      --bg1:#ffe6ec;         /* background light */
-      --text:#4a1f2a;        /* deep rose text */
-    }
+    :root{ --red:#ff2950; --soft-pink:#ffd6e0; --rose:#ff7a92; --bg1:#ffe6ec; --text:#4a1f2a }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Arial,"Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       background:
-        radial-gradient(ellipse at top left, #fff5f8 0%, #ffe9f0 40%, transparent 60%),
-        radial-gradient(ellipse at bottom right, #ffe1ea 0%, #ffd3df 40%, transparent 65%),
-        linear-gradient(135deg, #fff0f4, #ffdbe5 50%, #ffc9d7 100%);
-      min-height:100vh;
-      display:flex; align-items:center; justify-content:center; overflow-x:hidden;
+        radial-gradient(ellipse at top left,#fff5f8 0%,#ffe9f0 40%,transparent 60%),
+        radial-gradient(ellipse at bottom right,#ffe1ea 0%,#ffd3df 40%,transparent 65%),
+        linear-gradient(135deg,#fff0f4,#ffdbe5 50%,#ffc9d7 100%);
+      min-height:100vh; display:flex; align-items:center; justify-content:center; overflow-x:hidden;
     }
-    .card{ 
-      width:min(920px, 94vw);
-      background:rgba(255,255,255,0.65);
-      backdrop-filter: blur(10px);
-      border:1px solid #ffffffcc;
-      border-radius:24px; padding:28px 22px; position:relative;
-      box-shadow:0 10px 25px rgba(255, 41, 80, 0.15), 0 2px 8px rgba(0,0,0,.06);
-    }
-    .ribbon{ 
-      position:absolute; inset: -12px auto auto -12px; 
-      background:linear-gradient(90deg, var(--red), var(--rose));
-      color:white; padding:.5rem .9rem; border-radius:12px; font-weight:700; box-shadow:0 6px 16px rgba(255,41,80,.35);
-    }
-    h1{margin:8px 0 6px; font-size: clamp(1.6rem, 3.4vw, 2.2rem); letter-spacing:.2px}
-    .sub{opacity:.9; margin:0 0 14px; font-size:clamp(.95rem, 2.6vw, 1.05rem)}
-
-    .cta{
-      display:inline-flex; align-items:center; gap:.6rem; cursor:pointer;
-      padding:14px 22px; border-radius:999px; border:none; font-weight:800;
-      background:linear-gradient(180deg, var(--red), #ff4b6a);
-      color:#fff; letter-spacing:.3px; box-shadow:0 12px 24px rgba(255,41,80,.30);
-      transition: transform .12s ease, box-shadow .12s ease; outline:none;
-      animation: pulse 1.7s infinite ease-in-out;
-    }
-    .cta:hover{ transform: translateY(-1px); box-shadow:0 16px 30px rgba(255,41,80,.36)}
-    @keyframes pulse{ 0%,100%{filter:saturate(1)} 50%{filter:saturate(1.15)} }
-
+    .card{ width:min(920px,94vw); background:rgba(255,255,255,.65); backdrop-filter:blur(10px);
+      border:1px solid #ffffffcc; border-radius:24px; padding:28px 22px; position:relative;
+      box-shadow:0 10px 25px rgba(255,41,80,.15), 0 2px 8px rgba(0,0,0,.06)}
+    .ribbon{ position:absolute; inset:-12px auto auto -12px; background:linear-gradient(90deg,var(--red),var(--rose));
+      color:#fff; padding:.5rem .9rem; border-radius:12px; font-weight:700; box-shadow:0 6px 16px rgba(255,41,80,.35)}
+    h1{margin:8px 0 6px; font-size:clamp(1.6rem,3.4vw,2.2rem)}
+    .sub{opacity:.9; margin:0 0 14px; font-size:clamp(.95rem,2.6vw,1.05rem)}
+    .cta{ display:inline-flex; align-items:center; gap:.6rem; cursor:pointer; padding:14px 22px; border-radius:999px; border:none;
+      font-weight:800; background:linear-gradient(180deg,var(--red),#ff4b6a); color:#fff; letter-spacing:.3px; box-shadow:0 12px 24px rgba(255,41,80,.30);
+      transition:transform .12s, box-shadow .12s; outline:none; animation:pulse 1.7s infinite ease-in-out }
+    .cta:hover{ transform:translateY(-1px); box-shadow:0 16px 30px rgba(255,41,80,.36)}
+    @keyframes pulse{0%,100%{filter:saturate(1)}50%{filter:saturate(1.15)}}
     .tiny{font-size:.9rem; opacity:.8}
 
     /* floating hearts */
     .float-heart{ position:fixed; pointer-events:none; z-index:0; opacity:.8 }
-    @keyframes drift{
-      from{ transform:translateY(0) scale(1); opacity:.95 }
-      to{ transform:translateY(-120vh) scale(1.6); opacity:0 }
-    }
+    @keyframes drift{ from{transform:translateY(0) scale(1); opacity:.95} to{transform:translateY(-120vh) scale(1.6); opacity:0} }
 
     /* countdown overlay */
-    .overlay{ position:fixed; inset:0; display:none; place-items:center; background:rgba(255, 214, 224, .75); z-index:50; backdrop-filter: blur(2px)}
-    .count{
-      width:120px; height:120px; border-radius:999px; display:grid; place-items:center; font-weight:900;
-      background: conic-gradient(from -90deg, var(--red), var(--rose), var(--soft-pink));
-      color:white; box-shadow:0 12px 30px rgba(255,41,80,.35);
-      font-size:2.1rem; position:relative;
-    }
-    .count::after{
-      content:""; position:absolute; inset:6px; border-radius:50%; background:#fff; z-index:0;
-    }
-    .count span{ position:relative; z-index:1; color:var(--red)}
+    .overlay{ position:fixed; inset:0; display:none; place-items:center; background:rgba(255,214,224,.75); z-index:50; backdrop-filter:blur(2px)}
+    .count{ width:120px;height:120px;border-radius:999px;display:grid;place-items:center;font-weight:900;
+      background:conic-gradient(from -90deg,var(--red),var(--rose),var(--soft-pink)); color:#fff; box-shadow:0 12px 30px rgba(255,41,80,.35); font-size:2.1rem; position:relative }
+    .count::after{ content:""; position:absolute; inset:6px; border-radius:50%; background:#fff; z-index:0 }
+    .count span{ position:relative; z-index:1; color:var(--red) }
 
     /* modal */
-    dialog#loveModal{ 
-      border:none; border-radius:22px; padding:0; width:min(920px, 96vw);
-      max-height:90vh; /* keep dialog inside screen on mobile */
-      box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; z-index:60;
-    }
-    .modal-head{ display:flex; align-items:center; justify-content:space-between; padding:16px 18px; color:white; background:linear-gradient(90deg, var(--red), var(--rose)); }
-    .modal-body{ padding:20px 18px 24px; background:linear-gradient(180deg, #fff, #fff7fa); max-height:72vh; overflow:auto; -webkit-overflow-scrolling:touch }
-    .close-btn{ background:#ffffff; border:0; border-radius:12px; padding:8px 12px; cursor:pointer; font-weight:700; color:var(--red); box-shadow:0 4px 10px rgba(0,0,0,.08)}
+    dialog#loveModal{ border:none; border-radius:22px; padding:0; width:min(920px,96vw); max-height:90vh; box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; z-index:60 }
+    .modal-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px 18px; color:#fff; background:linear-gradient(90deg,var(--red),var(--rose)) }
+    .modal-body{ padding:20px 18px 24px; background:linear-gradient(180deg,#fff,#fff7fa); max-height:72vh; overflow:auto; -webkit-overflow-scrolling:touch }
+    .close-btn{ background:#fff; border:0; border-radius:12px; padding:8px 12px; cursor:pointer; font-weight:700; color:var(--red); box-shadow:0 4px 10px rgba(0,0,0,.08) }
 
-    .pill{ display:inline-flex; align-items:center; gap:.5rem; padding:6px 12px; border-radius:999px; background:var(--soft-pink); color:var(--text); font-weight:700; margin-bottom:10px}
-
+    .pill{ display:inline-flex; align-items:center; gap:.5rem; padding:6px 12px; border-radius:999px; background:var(--soft-pink); color:var(--text); font-weight:700; margin-bottom:10px }
     .msg{ display:grid; gap:10px; line-height:1.55; font-size:1.05rem }
     .msg b{ color:var(--red) }
-
-    .split{ display:grid; gap:16px; grid-template-columns: 1fr; }
-    @media (min-width:800px){ .split{ grid-template-columns: 1fr 1fr } }
-
-    .divider{ height:1px; background:linear-gradient(90deg, transparent, #ffd1dc, transparent); margin:10px 0 0 }
-
+    .split{ display:grid; gap:16px; grid-template-columns:1fr }
+    @media (min-width:800px){ .split{ grid-template-columns:1fr 1fr } }
+    .divider{ height:1px; background:linear-gradient(90deg,transparent,#ffd1dc,transparent); margin:10px 0 0 }
     footer.note{ margin-top:16px; font-size:.9rem; opacity:.75 }
+    a.subtle{ color:var(--red); font-weight:800; text-decoration:none; border-bottom:2px dotted currentColor }
 
-    /* cute link */
-    a.subtle{ color:var(--red); font-weight:800; text-decoration:none; border-bottom:2px dotted currentColor; }
     /* Glass photo frames */
     .gallery{display:grid; gap:16px; grid-template-columns:1fr; margin-bottom:14px}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
@@ -108,6 +68,134 @@
     .uploader label{font-weight:800; margin-right:8px}
     .uploader input{display:inline-block; margin:8px 0}
   </style>
+
+  <!-- All JavaScript is deferred so functions exist before any clicks -->
+  <script defer>
+    // ----- utilities -----
+    const LS_KEYS = { father:'ANNI_FATHER_PHOTO', couple:'ANNI_COUPLE_PHOTO' };
+
+    function spawnHeart(){
+      const h = document.createElement('div');
+      const size = Math.random()*18 + 12; // 12-30px
+      h.className = 'float-heart';
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.bottom = '-40px';
+      h.style.fontSize = size + 'px';
+      h.style.animation = `drift ${6 + Math.random()*6}s linear forwards`;
+      h.textContent = '❤';
+      document.addEventListener('DOMContentLoaded', ()=>{
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(), 12000);
+      });
+    }
+    setInterval(spawnHeart, 800);
+
+    // safe helper to write file
+    function saveFileFallback(file){
+      const url = URL.createObjectURL(file);
+      const a = document.createElement('a');
+      a.href = url; a.download = file.name; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ----- main logic (runs after DOM ready) -----
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const openBtn = document.getElementById('open');
+      const overlay = document.getElementById('overlay');
+      const counterEl = document.getElementById('counter');
+      const modal = document.getElementById('loveModal');
+      const closeBtn = document.getElementById('close');
+
+      const fatherInput = document.getElementById('fatherInput');
+      const coupleInput = document.getElementById('coupleInput');
+      const fatherImg = document.getElementById('fatherImg');
+      const coupleImg = document.getElementById('coupleImg');
+      const fatherPreview = document.getElementById('fatherPreview');
+      const couplePreview = document.getElementById('couplePreview');
+      const fatherPreviewWrap = document.getElementById('fatherPreviewWrap');
+      const couplePreviewWrap = document.getElementById('couplePreviewWrap');
+      const clearPhotosBtn = document.getElementById('clearPhotos');
+
+      function setImgFromFile(input, img, key, previewEl, wrapEl){
+        const f = input.files && input.files[0];
+        if(!f) return;
+        const reader = new FileReader();
+        reader.onload = (e)=>{
+          const data = e.target.result; // data URL
+          img.src = data; localStorage.setItem(key, data);
+          if(previewEl){ previewEl.src = data; if(wrapEl) wrapEl.style.display='block'; }
+        };
+        reader.readAsDataURL(f);
+      }
+
+      function restore(){
+        const a = localStorage.getItem(LS_KEYS.father);
+        const b = localStorage.getItem(LS_KEYS.couple);
+        if(a){ fatherImg.src=a; if(fatherPreview){ fatherPreview.src=a; fatherPreviewWrap.style.display='block'; } }
+        if(b){ coupleImg.src=b; if(couplePreview){ couplePreview.src=b; couplePreviewWrap.style.display='block'; } }
+      }
+
+      function openWithCountdown(){
+        restore();
+        let n = 3;
+        counterEl.textContent = n;
+        overlay.style.display = 'grid';
+        const tick = setInterval(()=>{
+          n -= 1; counterEl.textContent = n;
+          if(n <= 0){
+            clearInterval(tick);
+            overlay.style.display = 'none';
+            if(typeof modal.showModal === 'function'){ modal.showModal(); }
+            else { modal.setAttribute('open',''); }
+          }
+        }, 1000);
+      }
+
+      // expose globally only the function used in the button (if any future inline usage)
+      window.openWithCountdown = openWithCountdown;
+
+      // wire up events
+      openBtn.addEventListener('click', openWithCountdown);
+      closeBtn.addEventListener('click', ()=> modal.close());
+      modal.addEventListener('click', (e)=>{
+        const rect = modal.getBoundingClientRect();
+        const inDialog = (
+          rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+        );
+        if(!inDialog) modal.close();
+      });
+
+      fatherInput.addEventListener('change', ()=> setImgFromFile(fatherInput, fatherImg, LS_KEYS.father, fatherPreview, fatherPreviewWrap));
+      coupleInput.addEventListener('change', ()=> setImgFromFile(coupleInput, coupleImg, LS_KEYS.couple, couplePreview, couplePreviewWrap));
+      clearPhotosBtn.addEventListener('click', ()=>{
+        localStorage.removeItem(LS_KEYS.father);
+        localStorage.removeItem(LS_KEYS.couple);
+        fatherImg.removeAttribute('src'); coupleImg.removeAttribute('src');
+        fatherPreviewWrap.style.display='none'; couplePreviewWrap.style.display='none';
+        alert('Saved photos cleared. Add them again if you want.');
+      });
+
+      // copy page
+      const copyLink = document.getElementById('copyLink');
+      copyLink.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+        const file = new File([blob], 'Anniversary-Page-12-11-2025.html', {type:'text/html'});
+        try{
+          if(navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem !== 'undefined'){
+            const item = new ClipboardItem({ 'text/html': blob });
+            navigator.clipboard.write([item]).then(()=>{
+              alert('Page HTML copied! Paste into a file and send it to her.');
+            }).catch(()=>{ saveFileFallback(file); });
+          } else { saveFileFallback(file); }
+        }catch(err){ saveFileFallback(file); }
+      });
+
+      // initial restore in case photos exist
+      restore();
+    });
+  </script>
 </head>
 <body>
   <div class="card" aria-live="polite">
@@ -115,7 +203,7 @@
     <h1>Happy 1st Anniversary, My Love ❤️</h1>
     <p class="sub">To my <b>mama ponnu</b>—this little page is for you. Tap the button for a 3‑second surprise!</p>
 
-    <button class="cta" id="open">
+    <button class="cta" id="open" aria-label="Open the surprise">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.53C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
       Open the Surprise
     </button>
@@ -201,157 +289,5 @@
       <footer class="note">With love, always. ✨</footer>
     </div>
   </dialog>
-
-  <script>
-    // floating hearts factory
-    function spawnHeart(){
-      const h = document.createElement('div');
-      const size = Math.random()*18 + 12; // 12-30px
-      h.className = 'float-heart';
-      h.style.left = Math.random()*100 + 'vw';
-      h.style.bottom = '-40px';
-      h.style.fontSize = size + 'px';
-      h.style.animation = `drift ${6 + Math.random()*6}s linear forwards`;
-      h.textContent = '❤';
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(), 12000);
-    }
-    setInterval(spawnHeart, 800);
-
-    const openBtn = document.getElementById('open');
-    const overlay = document.getElementById('overlay');
-    const counterEl = document.getElementById('counter');
-    const modal = document.getElementById('loveModal');
-    const closeBtn = document.getElementById('close');
-
-    function openWithCountdown(){
-      let n = 3;
-      counterEl.textContent = n;
-      overlay.style.display = 'grid';
-      const tick = setInterval(()=>{
-        n -= 1; counterEl.textContent = n;
-        if(n <= 0){
-          clearInterval(tick);
-          overlay.style.display = 'none';
-          // ensure images restored just before showing
-          try{ restore(); }catch(e){}
-          if(typeof modal.showModal === 'function'){ modal.showModal(); }
-          else { modal.setAttribute('open', ''); }
-        }
-      }, 1000);
-    }
-          else { modal.setAttribute('open', ''); }
-        }
-      }, 1000);
-    }
-
-    openBtn.addEventListener('click', openWithCountdown);
-    closeBtn.addEventListener('click', ()=> modal.close());
-
-    // Copy page markup to clipboard so you can share quickly
-    document.getElementById('copyLink').addEventListener('click', (e)=>{
-      e.preventDefault();
-      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
-      const file = new File([blob], 'Anniversary-Page-12-11-2025.html', {type:'text/html'});
-      try{
-        if(navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem !== 'undefined'){
-          const item = new ClipboardItem({ 'text/html': blob });
-          navigator.clipboard.write([item]).then(()=>{
-            alert('Page HTML copied! Paste into a file and send it to her.');
-          }).catch(()=>{ saveFileFallback(file); });
-        } else {
-          saveFileFallback(file);
-        }
-      }catch(err){ saveFileFallback(file); }
-      function saveFileFallback(file){
-        const url = URL.createObjectURL(file);
-        const a = document.createElement('a');
-        a.href = url; a.download = file.name; a.click();
-        URL.revokeObjectURL(url);
-      }
-    });
-      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
-      const file = new File([blob], 'Anniversary-Page-12-11-2025.html', {type:'text/html'});
-      if(navigator.clipboard && navigator.clipboard.write){
-        const item = new ClipboardItem({ 'text/html': blob });
-        navigator.clipboard.write([item]).then(()=>{
-          alert('Page HTML copied! Paste into a file and send it to her.');
-        }).catch(()=>{
-          saveFileFallback(file);
-        });
-      } else {
-        saveFileFallback(file);
-      }
-      function saveFileFallback(file){
-        const url = URL.createObjectURL(file);
-        const a = document.createElement('a');
-        a.href = url; a.download = file.name; a.click();
-        URL.revokeObjectURL(url);
-      }
-    });
-
-    // Accessibility: close modal on backdrop click (native dialog only)
-    modal.addEventListener('click', (e)=>{
-      const rect = modal.getBoundingClientRect();
-      const inDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if(!inDialog) modal.close();
-    });
-      // Photo upload + persistence (localStorage)
-    const fatherInput = document.getElementById('fatherInput');
-    const coupleInput = document.getElementById('coupleInput');
-    const fatherImg = document.getElementById('fatherImg');
-    const coupleImg = document.getElementById('coupleImg');
-    const fatherPreview = document.getElementById('fatherPreview');
-    const couplePreview = document.getElementById('couplePreview');
-    const fatherPreviewWrap = document.getElementById('fatherPreviewWrap');
-    const couplePreviewWrap = document.getElementById('couplePreviewWrap');
-    const clearPhotosBtn = document.getElementById('clearPhotos');
-
-    const LS_KEYS = { father:'ANNI_FATHER_PHOTO', couple:'ANNI_COUPLE_PHOTO' };
-
-    function setImgFromFile(input, img, key, previewEl, wrapEl){
-      const f = input.files && input.files[0];
-      if(!f) return;
-      const reader = new FileReader();
-      reader.onload = (e)=>{
-        const data = e.target.result; // data URL
-        img.src = data; localStorage.setItem(key, data);
-        if(previewEl){ previewEl.src = data; if(wrapEl) wrapEl.style.display='block'; }
-      };
-      reader.readAsDataURL(f);
-    }{
-      const f = input.files && input.files[0];
-      if(!f) return;
-      const reader = new FileReader();
-      reader.onload = (e)=>{
-        const data = e.target.result; // data URL
-        img.src = data; localStorage.setItem(key, data);
-      };
-      reader.readAsDataURL(f);
-    }
-
-    function restore(){
-      const a = localStorage.getItem(LS_KEYS.father);
-      const b = localStorage.getItem(LS_KEYS.couple);
-      if(a){ fatherImg.src = a; if(fatherPreview){ fatherPreview.src=a; fatherPreviewWrap.style.display='block'; } }
-      if(b){ coupleImg.src = b; if(couplePreview){ couplePreview.src=b; couplePreviewWrap.style.display='block'; } }
-    }
-
-    restore();
-    fatherInput && fatherInput.addEventListener('change', ()=> setImgFromFile(fatherInput, fatherImg, LS_KEYS.father, fatherPreview, fatherPreviewWrap));
-    coupleInput && coupleInput.addEventListener('change', ()=> setImgFromFile(coupleInput, coupleImg, LS_KEYS.couple, couplePreview, couplePreviewWrap));
-
-    clearPhotosBtn && clearPhotosBtn.addEventListener('click', ()=>{
-      localStorage.removeItem(LS_KEYS.father);
-      localStorage.removeItem(LS_KEYS.couple);
-      fatherImg.removeAttribute('src'); coupleImg.removeAttribute('src');
-      if(fatherPreviewWrap) fatherPreviewWrap.style.display='none';
-      if(couplePreviewWrap) couplePreviewWrap.style.display='none';
-      alert('Saved photos cleared. Add them again if you want.');
-    });
-  </script>
 </body>
 </html>
