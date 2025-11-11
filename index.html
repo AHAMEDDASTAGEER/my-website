@@ -122,14 +122,24 @@
 
     <p class="tiny">Tip: You can <a class="subtle" href="#" id="copyLink">copy this page</a> and send it to her 💌</p>
 
-    <details class="uploader">
+    <details class="uploader" open>
       <summary style="cursor:pointer;font-weight:800;color:var(--red)">Add photos (optional) – will appear in the surprise</summary>
       <div style="margin-top:10px">
         <label for="fatherInput">Her with her father:</label>
         <input id="fatherInput" type="file" accept="image/*" />
-        <br>
+        <div id="fatherPreviewWrap" style="margin:8px 0 14px; display:none">
+          <img id="fatherPreview" alt="Preview: Her with her father" style="max-width:200px; border-radius:10px; box-shadow:0 6px 16px rgba(0,0,0,.15); display:block"/>
+          <span class="tiny">Saved ✓ (will show in the popup)</span>
+        </div>
         <label for="coupleInput">You both together:</label>
         <input id="coupleInput" type="file" accept="image/*" />
+        <div id="couplePreviewWrap" style="margin:8px 0; display:none">
+          <img id="couplePreview" alt="Preview: You both together" style="max-width:200px; border-radius:10px; box-shadow:0 6px 16px rgba(0,0,0,.15); display:block"/>
+          <span class="tiny">Saved ✓ (will show in the popup)</span>
+        </div>
+        <div style="margin-top:10px">
+          <button id="clearPhotos" class="close-btn" type="button">Clear saved photos</button>
+        </div>
         <p class="tiny" style="margin-top:6px">Photos are stored only in your browser (localStorage) and shown inside the popup.</p>
       </div>
     </details>
@@ -145,6 +155,7 @@
   <!-- Modal -->
   <dialog id="loveModal">
     <div class="modal-head">
+      <div class="tiny" style="background:rgba(255,255,255,.22); padding:4px 10px; border-radius:999px">Swipe ↕ to read fully</div>
       <span style="font-weight:800">For You, My Love ❤️</span>
       <button class="close-btn" id="close">Close ✨</button>
     </div>
@@ -293,10 +304,25 @@
     const coupleInput = document.getElementById('coupleInput');
     const fatherImg = document.getElementById('fatherImg');
     const coupleImg = document.getElementById('coupleImg');
+    const fatherPreview = document.getElementById('fatherPreview');
+    const couplePreview = document.getElementById('couplePreview');
+    const fatherPreviewWrap = document.getElementById('fatherPreviewWrap');
+    const couplePreviewWrap = document.getElementById('couplePreviewWrap');
+    const clearPhotosBtn = document.getElementById('clearPhotos');
 
     const LS_KEYS = { father:'ANNI_FATHER_PHOTO', couple:'ANNI_COUPLE_PHOTO' };
 
-    function setImgFromFile(input, img, key){
+    function setImgFromFile(input, img, key, previewEl, wrapEl){
+      const f = input.files && input.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = (e)=>{
+        const data = e.target.result; // data URL
+        img.src = data; localStorage.setItem(key, data);
+        if(previewEl){ previewEl.src = data; if(wrapEl) wrapEl.style.display='block'; }
+      };
+      reader.readAsDataURL(f);
+    }{
       const f = input.files && input.files[0];
       if(!f) return;
       const reader = new FileReader();
@@ -310,12 +336,22 @@
     function restore(){
       const a = localStorage.getItem(LS_KEYS.father);
       const b = localStorage.getItem(LS_KEYS.couple);
-      if(a) fatherImg.src = a; if(b) coupleImg.src = b;
+      if(a){ fatherImg.src = a; if(fatherPreview){ fatherPreview.src=a; fatherPreviewWrap.style.display='block'; } }
+      if(b){ coupleImg.src = b; if(couplePreview){ couplePreview.src=b; couplePreviewWrap.style.display='block'; } }
     }
 
     restore();
-    fatherInput && fatherInput.addEventListener('change', ()=> setImgFromFile(fatherInput, fatherImg, LS_KEYS.father));
-    coupleInput && coupleInput.addEventListener('change', ()=> setImgFromFile(coupleInput, coupleImg, LS_KEYS.couple));
+    fatherInput && fatherInput.addEventListener('change', ()=> setImgFromFile(fatherInput, fatherImg, LS_KEYS.father, fatherPreview, fatherPreviewWrap));
+    coupleInput && coupleInput.addEventListener('change', ()=> setImgFromFile(coupleInput, coupleImg, LS_KEYS.couple, couplePreview, couplePreviewWrap));
+
+    clearPhotosBtn && clearPhotosBtn.addEventListener('click', ()=>{
+      localStorage.removeItem(LS_KEYS.father);
+      localStorage.removeItem(LS_KEYS.couple);
+      fatherImg.removeAttribute('src'); coupleImg.removeAttribute('src');
+      if(fatherPreviewWrap) fatherPreviewWrap.style.display='none';
+      if(couplePreviewWrap) couplePreviewWrap.style.display='none';
+      alert('Saved photos cleared. Add them again if you want.');
+    });
   </script>
 </body>
 </html>
