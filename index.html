@@ -1,95 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>To My Love</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy 1st Anniversary ❤️ 12‑11‑2025</title>
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background-color: lightpink;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    :root{
+      --red:#ff2950;         /* primary red */
+      --soft-pink:#ffd6e0;   /* light pink */
+      --rose:#ff7a92;        /* accent */
+      --bg1:#ffe6ec;         /* background light */
+      --text:#4a1f2a;        /* deep rose text */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(ellipse at top left, #fff5f8 0%, #ffe9f0 40%, transparent 60%),
+        radial-gradient(ellipse at bottom right, #ffe1ea 0%, #ffd3df 40%, transparent 65%),
+        linear-gradient(135deg, #fff0f4, #ffdbe5 50%, #ffc9d7 100%);
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center; overflow-x:hidden;
+    }
+    .card{ 
+      width:min(920px, 94vw);
+      background:rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      border:1px solid #ffffffcc;
+      border-radius:24px; padding:28px 22px; position:relative;
+      box-shadow:0 10px 25px rgba(255, 41, 80, 0.15), 0 2px 8px rgba(0,0,0,.06);
+    }
+    .ribbon{ 
+      position:absolute; inset: -12px auto auto -12px; 
+      background:linear-gradient(90deg, var(--red), var(--rose));
+      color:white; padding:.5rem .9rem; border-radius:12px; font-weight:700; box-shadow:0 6px 16px rgba(255,41,80,.35);
+    }
+    h1{margin:8px 0 6px; font-size: clamp(1.6rem, 3.4vw, 2.2rem); letter-spacing:.2px}
+    .sub{opacity:.9; margin:0 0 14px; font-size:clamp(.95rem, 2.6vw, 1.05rem)}
+
+    .cta{
+      display:inline-flex; align-items:center; gap:.6rem; cursor:pointer;
+      padding:14px 22px; border-radius:999px; border:none; font-weight:800;
+      background:linear-gradient(180deg, var(--red), #ff4b6a);
+      color:#fff; letter-spacing:.3px; box-shadow:0 12px 24px rgba(255,41,80,.30);
+      transition: transform .12s ease, box-shadow .12s ease; outline:none;
+      animation: pulse 1.7s infinite ease-in-out;
+    }
+    .cta:hover{ transform: translateY(-1px); box-shadow:0 16px 30px rgba(255,41,80,.36)}
+    @keyframes pulse{ 0%,100%{filter:saturate(1)} 50%{filter:saturate(1.15)} }
+
+    .tiny{font-size:.9rem; opacity:.8}
+
+    /* floating hearts */
+    .float-heart{ position:fixed; pointer-events:none; z-index:0; opacity:.8 }
+    @keyframes drift{
+      from{ transform:translateY(0) scale(1); opacity:.95 }
+      to{ transform:translateY(-120vh) scale(1.6); opacity:0 }
     }
 
-    .heart {
-      position: relative;
-      width: 300px;
-      height: 270px;
-      background-color: red;
-      transform: rotate(-45deg);
-      animation: pulse 2s infinite;
-      cursor: pointer;
+    /* countdown overlay */
+    .overlay{ position:fixed; inset:0; display:none; place-items:center; background:rgba(255, 214, 224, .75); z-index:50; backdrop-filter: blur(2px)}
+    .count{
+      width:120px; height:120px; border-radius:999px; display:grid; place-items:center; font-weight:900;
+      background: conic-gradient(from -90deg, var(--red), var(--rose), var(--soft-pink));
+      color:white; box-shadow:0 12px 30px rgba(255,41,80,.35);
+      font-size:2.1rem; position:relative;
     }
+    .count::after{
+      content:""; position:absolute; inset:6px; border-radius:50%; background:#fff; z-index:0;
+    }
+    .count span{ position:relative; z-index:1; color:var(--red)}
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 300px;
-      height: 270px;
-      background-color: red;
-      border-radius: 50%;
+    /* modal */
+    dialog#loveModal{ 
+      border:none; border-radius:22px; padding:0; width:min(820px, 94vw);
+      box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; z-index:60;
     }
+    .modal-head{ display:flex; align-items:center; justify-content:space-between; padding:16px 18px; color:white; background:linear-gradient(90deg, var(--red), var(--rose)); }
+    .modal-body{ padding:20px 18px 24px; background:linear-gradient(180deg, #fff, #fff7fa) }
+    .close-btn{ background:#ffffff; border:0; border-radius:12px; padding:8px 12px; cursor:pointer; font-weight:700; color:var(--red); box-shadow:0 4px 10px rgba(0,0,0,.08)}
 
-    .heart::before {
-      top: -150px;
-      left: 0;
-    }
+    .pill{ display:inline-flex; align-items:center; gap:.5rem; padding:6px 12px; border-radius:999px; background:var(--soft-pink); color:var(--text); font-weight:700; margin-bottom:10px}
 
-    .heart::after {
-      left: 150px;
-      top: 0;
-    }
+    .msg{ display:grid; gap:10px; line-height:1.55; font-size:1.05rem }
+    .msg b{ color:var(--red) }
 
-    .message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      color: white;
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 10px;
-    }
+    .split{ display:grid; gap:16px; grid-template-columns: 1fr; }
+    @media (min-width:800px){ .split{ grid-template-columns: 1fr 1fr } }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(1) rotate(-45deg);
-      }
-      50% {
-        transform: scale(1.1) rotate(-45deg);
-      }
-      100% {
-        transform: scale(1) rotate(-45deg);
-      }
-    }
+    .divider{ height:1px; background:linear-gradient(90deg, transparent, #ffd1dc, transparent); margin:10px 0 0 }
+
+    footer.note{ margin-top:16px; font-size:.9rem; opacity:.75 }
+
+    /* cute link */
+    a.subtle{ color:var(--red); font-weight:800; text-decoration:none; border-bottom:2px dotted currentColor; }
+    /* Glass photo frames */
+    .gallery{display:grid; gap:16px; grid-template-columns:1fr; margin-bottom:14px}
+    @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
+    .glass{position:relative; padding:10px; border-radius:18px; background:rgba(255,255,255,.45); backdrop-filter:blur(10px); box-shadow:0 10px 30px rgba(0,0,0,.12), inset 0 0 0 1px rgba(255,255,255,.6)}
+    .glass img{width:100%; height:auto; display:block; border-radius:12px}
+    .cap{margin-top:8px; font-weight:700; font-size:.95rem; color:var(--red)}
+    .dua{margin:6px 0 2px; font-style:italic}
+    .uploader{margin-top:14px; background:rgba(255,255,255,.6); border:1px dashed #ffa9b9; padding:12px; border-radius:14px}
+    .uploader label{font-weight:800; margin-right:8px}
+    .uploader input{display:inline-block; margin:8px 0}
   </style>
 </head>
 <body>
-  <div class="heart" onclick="alert('I’m really sorry, and I love you deeply, ummu!')">
-    <div class="message">
-      <!-- Sorry 50 times -->
-      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
-      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
-      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
-      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br>
-      Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey, Sorry ummu my wifey,<br><br>
+  <div class="card" aria-live="polite">
+    <div class="ribbon">12‑11‑2025</div>
+    <h1>Happy 1st Anniversary, My Love ❤️</h1>
+    <p class="sub">To my <b>mama ponnu</b>—this little page is for you. Tap the button for a 3‑second surprise!</p>
 
-      <!-- Love you 100 times -->
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,<br>
-      Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘, Love you ummu 😘😘,
-    </div>
+    <button class="cta" id="open">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.53C11.09 5.01 12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      Open the Surprise
+    </button>
+
+    <p class="tiny">Tip: You can <a class="subtle" href="#" id="copyLink">copy this page</a> and send it to her 💌</p>
+
+    <details class="uploader">
+      <summary style="cursor:pointer;font-weight:800;color:var(--red)">Add photos (optional) – will appear in the surprise</summary>
+      <div style="margin-top:10px">
+        <label for="fatherInput">Her with her father:</label>
+        <input id="fatherInput" type="file" accept="image/*" />
+        <br>
+        <label for="coupleInput">You both together:</label>
+        <input id="coupleInput" type="file" accept="image/*" />
+        <p class="tiny" style="margin-top:6px">Photos are stored only in your browser (localStorage) and shown inside the popup.</p>
+      </div>
+    </details>
+
+    <footer class="note">Theme: red × light‑pink • Made with love for girls who like red ✨</footer>
   </div>
+
+  <!-- Countdown overlay -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Countdown">
+    <div class="count" aria-live="assertive"><span id="counter">3</span></div>
+  </div>
+
+  <!-- Modal -->
+  <dialog id="loveModal">
+    <div class="modal-head">
+      <span style="font-weight:800">For You, My Love ❤️</span>
+      <button class="close-btn" id="close">Close ✨</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center; margin-bottom:16px;">
+        <!-- Photo of her with her father -->
+        <img src="father_photo.jpg" alt="Her and her Father" style="max-width:100%; border-radius:16px; margin-bottom:14px; box-shadow:0 6px 20px rgba(0,0,0,.18);">
+        <!-- Your photo together -->
+        <img src="couple_photo.jpg" alt="You both" style="max-width:100%; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,.18);">
+      </div>
+      <div class="pill">Happy 1st Anniversary • 12‑11‑2025</div>
+      <div class="split">
+        <section>
+          <h3 style="margin:.2rem 0 .6rem">Message (English)</h3>
+          <div class="msg">
+            <p>To my love, my <b>mama ponnu</b>,</p>
+            <p>We fell for each other even before we truly knew each other. When we finally did, our happiness doubled—<i>and yes, some family storms began</i>. Many tried to pull us apart, but you never let go. You chose me—then, now, and always. When I had no money, no job, and when no one believed in me, <b>you waited and you believed</b>.</p>
+            <p>Our love has been buses and video calls, little fights and big laughter, quick outings and long chats. Through every up and down, we stayed true. <b>This is our promise:</b> to keep choosing each other till the last, to grow together, to protect our faith in us, and to keep joy alive.</p>
+            <p><b>Happy 1st Anniversary (12‑11‑2025)</b>. Our journey continues—hand in hand, heart to heart, forever.</p>
+            <p style="margin-top:.4rem"><i>Let this page be our small proof: even when the world doubts us, our love signs its own forever.</i></p>
+          </div>
+        </section>
+        <section>
+          <h3 style="margin:.2rem 0 .6rem">செய்தி (Tamil)</h3>
+          <div class="msg" lang="ta">
+            <p>என் காதலே, என் <b>மாமா பொண்ணு</b>,</p>
+            <p>ஒருவரை ஒருவர் நன்கு அறியும்முன் நாமே காதலித்தோம். அறிந்தபின் மகிழ்ச்சி இரட்டிப்பானது—அதே நேரத்தில் குடும்ப புயல்களும் தொடங்கின. பலர் நம்மை பிரிக்க முயன்றார்கள்; நீ ஒருபோதும் விடவில்லை. <b>அப்போது, இப்போது, எப்போதும்—என்னைத் தான் நீத் தேர்ந்தெடுத்தாய்</b>. பணமில்லை, வேலை இல்லை, யாரும் நம்பாத நேரத்திலும் நீ என்னை <b>காத்தாய், நம்பினாய்</b>.</p>
+            <p>நம்முடைய காதல்—பஸ் சந்திப்புகள், வீடியோ கால், சிறு சண்டைகள், பெரிய சிரிப்புகள், வெளியே போன நாட்கள், இரவெங்கும் நீளும் மெசேஜ்கள்… ஏற்றத் தாழ்வுகளைத் தாண்டியும் நாம்தான் நாமாக இருந்தோம். <b>இந்த வாக்குறுதி:</b> இறுதி வரை ஒருவரை ஒருவர் தேர்ந்தெடுப்போம்; சேர்ந்து வளர்வோம்; நம்பிக்கையை காப்போம்; சந்தோஷத்தை உயிரோட்டமாக வைத்திருப்போம்.</p>
+            <p><b>இனிய முதல் ஆண்டு நிறைவு (12‑11‑2025)</b>. கை கோர்த்து, இதயம் இணைத்து—என்றும் தொடரும் நம் பயணம்.</p>
+            <p style="margin-top:.4rem"><i>உலகம் சந்தேகப்பட்டாலும், நம் காதல் தான் நம்முடைய “என்றும்” கையெழுத்திடும் சான்று.</i></p>
+          </div>
+        </section>
+      </div>
+      <div class="divider"></div>
+      <footer class="note">With love, always. ✨</footer>
+    </div>
+  </dialog>
+
+  <script>
+    // floating hearts factory
+    function spawnHeart(){
+      const h = document.createElement('div');
+      const size = Math.random()*18 + 12; // 12-30px
+      h.className = 'float-heart';
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.bottom = '-40px';
+      h.style.fontSize = size + 'px';
+      h.style.animation = `drift ${6 + Math.random()*6}s linear forwards`;
+      h.textContent = '❤';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 12000);
+    }
+    setInterval(spawnHeart, 800);
+
+    const openBtn = document.getElementById('open');
+    const overlay = document.getElementById('overlay');
+    const counterEl = document.getElementById('counter');
+    const modal = document.getElementById('loveModal');
+    const closeBtn = document.getElementById('close');
+
+    function openWithCountdown(){
+      let n = 3;
+      counterEl.textContent = n;
+      overlay.style.display = 'grid';
+      const tick = setInterval(()=>{
+        n -= 1; counterEl.textContent = n;
+        if(n <= 0){
+          clearInterval(tick);
+          overlay.style.display = 'none';
+          if(typeof modal.showModal === 'function'){ modal.showModal(); }
+          else { modal.setAttribute('open', ''); }
+        }
+      }, 1000);
+    }
+
+    openBtn.addEventListener('click', openWithCountdown);
+    closeBtn.addEventListener('click', ()=> modal.close());
+
+    // Copy page markup to clipboard so you can share quickly
+    document.getElementById('copyLink').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+      const file = new File([blob], 'Anniversary-Page-12-11-2025.html', {type:'text/html'});
+      if(navigator.clipboard && navigator.clipboard.write){
+        const item = new ClipboardItem({ 'text/html': blob });
+        navigator.clipboard.write([item]).then(()=>{
+          alert('Page HTML copied! Paste into a file and send it to her.');
+        }).catch(()=>{
+          saveFileFallback(file);
+        });
+      } else {
+        saveFileFallback(file);
+      }
+      function saveFileFallback(file){
+        const url = URL.createObjectURL(file);
+        const a = document.createElement('a');
+        a.href = url; a.download = file.name; a.click();
+        URL.revokeObjectURL(url);
+      }
+    });
+
+    // Accessibility: close modal on backdrop click (native dialog only)
+    modal.addEventListener('click', (e)=>{
+      const rect = modal.getBoundingClientRect();
+      const inDialog = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if(!inDialog) modal.close();
+    });
+  </script>
 </body>
 </html>
