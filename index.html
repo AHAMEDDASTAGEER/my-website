@@ -73,6 +73,9 @@
   <script defer>
     // ----- utilities -----
     const LS_KEYS = { father:'ANNI_FATHER_PHOTO', couple:'ANNI_COUPLE_PHOTO' };
+    // Default image files shipped with the site (stored in your repo)
+    const DEFAULT_FATHER_SRC = 'father.jpg';
+    const DEFAULT_COUPLE_SRC = 'couple.jpg';
 
     function spawnHeart(){
       const h = document.createElement('div');
@@ -129,9 +132,17 @@
       }
 
       function restore(){
+        // start with defaults shipped in repo
+        fatherImg.src = DEFAULT_FATHER_SRC;
+        coupleImg.src = DEFAULT_COUPLE_SRC;
+        if(fatherPreview){ fatherPreview.src = DEFAULT_FATHER_SRC; fatherPreviewWrap.style.display='block'; }
+        if(couplePreview){ couplePreview.src = DEFAULT_COUPLE_SRC; couplePreviewWrap.style.display='block'; }
+        // then override from localStorage if present
         const a = localStorage.getItem(LS_KEYS.father);
         const b = localStorage.getItem(LS_KEYS.couple);
         if(a){ fatherImg.src=a; if(fatherPreview){ fatherPreview.src=a; fatherPreviewWrap.style.display='block'; } }
+        if(b){ coupleImg.src=b; if(couplePreview){ couplePreview.src=b; couplePreviewWrap.style.display='block'; } }
+      } }
         if(b){ coupleImg.src=b; if(couplePreview){ couplePreview.src=b; couplePreviewWrap.style.display='block'; } }
       }
 
@@ -252,12 +263,12 @@
 
       <div class="gallery">
         <div class="glass">
-          <img id="fatherImg" alt="Her with her beloved father" src=""/>
+          <img id="fatherImg" alt="Her with her beloved father" src="father.jpg"/>
           <div class="cap">With Appa 🤍</div>
           <p class="dua">May Allah grant him Jannah and peace. Aameen. 🤲</p>
         </div>
         <div class="glass">
-          <img id="coupleImg" alt="You both together" src=""/>
+          <img id="coupleImg" alt="You both together" src="couple.jpg"/>
           <div class="cap">Us, always ❤️</div>
           <p class="tiny" style="margin-top:4px">From buses and video calls to little fights and big laughter—we keep choosing each other.</p>
         </div>
