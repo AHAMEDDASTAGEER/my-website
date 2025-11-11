@@ -75,11 +75,12 @@
 
     /* modal */
     dialog#loveModal{ 
-      border:none; border-radius:22px; padding:0; width:min(820px, 94vw);
+      border:none; border-radius:22px; padding:0; width:min(920px, 96vw);
+      max-height:90vh; /* keep dialog inside screen on mobile */
       box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden; z-index:60;
     }
     .modal-head{ display:flex; align-items:center; justify-content:space-between; padding:16px 18px; color:white; background:linear-gradient(90deg, var(--red), var(--rose)); }
-    .modal-body{ padding:20px 18px 24px; background:linear-gradient(180deg, #fff, #fff7fa) }
+    .modal-body{ padding:20px 18px 24px; background:linear-gradient(180deg, #fff, #fff7fa); max-height:72vh; overflow:auto; -webkit-overflow-scrolling:touch }
     .close-btn{ background:#ffffff; border:0; border-radius:12px; padding:8px 12px; cursor:pointer; font-weight:700; color:var(--red); box-shadow:0 4px 10px rgba(0,0,0,.08)}
 
     .pill{ display:inline-flex; align-items:center; gap:.5rem; padding:6px 12px; border-radius:999px; background:var(--soft-pink); color:var(--text); font-weight:700; margin-bottom:10px}
@@ -100,7 +101,7 @@
     .gallery{display:grid; gap:16px; grid-template-columns:1fr; margin-bottom:14px}
     @media(min-width:760px){.gallery{grid-template-columns:1fr 1fr}}
     .glass{position:relative; padding:10px; border-radius:18px; background:rgba(255,255,255,.45); backdrop-filter:blur(10px); box-shadow:0 10px 30px rgba(0,0,0,.12), inset 0 0 0 1px rgba(255,255,255,.6)}
-    .glass img{width:100%; height:auto; display:block; border-radius:12px}
+    .glass img{width:100%; height:auto; display:block; border-radius:12px; object-fit:cover}
     .cap{margin-top:8px; font-weight:700; font-size:.95rem; color:var(--red)}
     .dua{margin:6px 0 2px; font-style:italic}
     .uploader{margin-top:14px; background:rgba(255,255,255,.6); border:1px dashed #ffa9b9; padding:12px; border-radius:14px}
@@ -148,13 +149,21 @@
       <button class="close-btn" id="close">Close ✨</button>
     </div>
     <div class="modal-body">
-      <div style="text-align:center; margin-bottom:16px;">
-        <!-- Photo of her with her father -->
-        <img src="father_photo.jpg" alt="Her and her Father" style="max-width:100%; border-radius:16px; margin-bottom:14px; box-shadow:0 6px 20px rgba(0,0,0,.18);">
-        <!-- Your photo together -->
-        <img src="couple_photo.jpg" alt="You both" style="max-width:100%; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,.18);">
-      </div>
       <div class="pill">Happy 1st Anniversary • 12‑11‑2025</div>
+
+      <div class="gallery">
+        <div class="glass">
+          <img id="fatherImg" alt="Her with her beloved father" src=""/>
+          <div class="cap">With Appa 🤍</div>
+          <p class="dua">May Allah grant him Jannah and peace. Aameen. 🤲</p>
+        </div>
+        <div class="glass">
+          <img id="coupleImg" alt="You both together" src=""/>
+          <div class="cap">Us, always ❤️</div>
+          <p class="tiny" style="margin-top:4px">From buses and video calls to little fights and big laughter—we keep choosing each other.</p>
+        </div>
+      </div>
+
       <div class="split">
         <section>
           <h3 style="margin:.2rem 0 .6rem">Message (English)</h3>
@@ -162,8 +171,8 @@
             <p>To my love, my <b>mama ponnu</b>,</p>
             <p>We fell for each other even before we truly knew each other. When we finally did, our happiness doubled—<i>and yes, some family storms began</i>. Many tried to pull us apart, but you never let go. You chose me—then, now, and always. When I had no money, no job, and when no one believed in me, <b>you waited and you believed</b>.</p>
             <p>Our love has been buses and video calls, little fights and big laughter, quick outings and long chats. Through every up and down, we stayed true. <b>This is our promise:</b> to keep choosing each other till the last, to grow together, to protect our faith in us, and to keep joy alive.</p>
+            <p>To your beloved Appa: your love lives in her smile. May Allah grant you Jannah and peace. Aameen.</p>
             <p><b>Happy 1st Anniversary (12‑11‑2025)</b>. Our journey continues—hand in hand, heart to heart, forever.</p>
-            <p style="margin-top:.4rem"><i>Let this page be our small proof: even when the world doubts us, our love signs its own forever.</i></p>
           </div>
         </section>
         <section>
@@ -171,9 +180,9 @@
           <div class="msg" lang="ta">
             <p>என் காதலே, என் <b>மாமா பொண்ணு</b>,</p>
             <p>ஒருவரை ஒருவர் நன்கு அறியும்முன் நாமே காதலித்தோம். அறிந்தபின் மகிழ்ச்சி இரட்டிப்பானது—அதே நேரத்தில் குடும்ப புயல்களும் தொடங்கின. பலர் நம்மை பிரிக்க முயன்றார்கள்; நீ ஒருபோதும் விடவில்லை. <b>அப்போது, இப்போது, எப்போதும்—என்னைத் தான் நீத் தேர்ந்தெடுத்தாய்</b>. பணமில்லை, வேலை இல்லை, யாரும் நம்பாத நேரத்திலும் நீ என்னை <b>காத்தாய், நம்பினாய்</b>.</p>
-            <p>நம்முடைய காதல்—பஸ் சந்திப்புகள், வீடியோ கால், சிறு சண்டைகள், பெரிய சிரிப்புகள், வெளியே போன நாட்கள், இரவெங்கும் நீளும் மெசேஜ்கள்… ஏற்றத் தாழ்வுகளைத் தாண்டியும் நாம்தான் நாமாக இருந்தோம். <b>இந்த வாக்குறுதி:</b> இறுதி வரை ஒருவரை ஒருவர் தேர்ந்தெடுப்போம்; சேர்ந்து வளர்வோம்; நம்பிக்கையை காப்போம்; சந்தோஷத்தை உயிரோட்டமாக வைத்திருப்போம்.</p>
+            <p>பஸ் சந்திப்புகள், வீடியோ கால், சிறு சண்டைகள், பெரிய சிரிப்புகள், வெளியே போன நாட்கள், நீளும் மெசேஜ்கள்… எல்லாவற்றையும்விட்டு நாம் உண்மையாகவே இணைந்ததே. <b>இந்த வாக்குறுதி:</b> இறுதி வரை ஒருவரை ஒருவர் தேர்ந்தெடுப்போம்; சேர்ந்து வளர்வோம்; நம்பிக்கையை காப்போம்; சந்தோஷத்தை உயிரோட்டமாக வைத்திருப்போம்.</p>
+            <p>அன்புள்ள அப்பாவுக்கு: உங்கள் அன்பு அவள் புன்னகையிலே என்றும் உயிரோடே. அல்லாஹ் உங்களுக்கு ஜன்னா நல்குவானாக. ஆமீன்.</p>
             <p><b>இனிய முதல் ஆண்டு நிறைவு (12‑11‑2025)</b>. கை கோர்த்து, இதயம் இணைத்து—என்றும் தொடரும் நம் பயணம்.</p>
-            <p style="margin-top:.4rem"><i>உலகம் சந்தேகப்பட்டாலும், நம் காதல் தான் நம்முடைய “என்றும்” கையெழுத்திடும் சான்று.</i></p>
           </div>
         </section>
       </div>
@@ -213,7 +222,13 @@
         if(n <= 0){
           clearInterval(tick);
           overlay.style.display = 'none';
+          // ensure images restored just before showing
+          try{ restore(); }catch(e){}
           if(typeof modal.showModal === 'function'){ modal.showModal(); }
+          else { modal.setAttribute('open', ''); }
+        }
+      }, 1000);
+    }
           else { modal.setAttribute('open', ''); }
         }
       }, 1000);
@@ -225,6 +240,25 @@
     // Copy page markup to clipboard so you can share quickly
     document.getElementById('copyLink').addEventListener('click', (e)=>{
       e.preventDefault();
+      const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
+      const file = new File([blob], 'Anniversary-Page-12-11-2025.html', {type:'text/html'});
+      try{
+        if(navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem !== 'undefined'){
+          const item = new ClipboardItem({ 'text/html': blob });
+          navigator.clipboard.write([item]).then(()=>{
+            alert('Page HTML copied! Paste into a file and send it to her.');
+          }).catch(()=>{ saveFileFallback(file); });
+        } else {
+          saveFileFallback(file);
+        }
+      }catch(err){ saveFileFallback(file); }
+      function saveFileFallback(file){
+        const url = URL.createObjectURL(file);
+        const a = document.createElement('a');
+        a.href = url; a.download = file.name; a.click();
+        URL.revokeObjectURL(url);
+      }
+    });
       const blob = new Blob([document.documentElement.outerHTML], {type:'text/html'});
       const file = new File([blob], 'Anniversary-Page-12-11-2025.html', {type:'text/html'});
       if(navigator.clipboard && navigator.clipboard.write){
@@ -254,6 +288,34 @@
       );
       if(!inDialog) modal.close();
     });
+      // Photo upload + persistence (localStorage)
+    const fatherInput = document.getElementById('fatherInput');
+    const coupleInput = document.getElementById('coupleInput');
+    const fatherImg = document.getElementById('fatherImg');
+    const coupleImg = document.getElementById('coupleImg');
+
+    const LS_KEYS = { father:'ANNI_FATHER_PHOTO', couple:'ANNI_COUPLE_PHOTO' };
+
+    function setImgFromFile(input, img, key){
+      const f = input.files && input.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = (e)=>{
+        const data = e.target.result; // data URL
+        img.src = data; localStorage.setItem(key, data);
+      };
+      reader.readAsDataURL(f);
+    }
+
+    function restore(){
+      const a = localStorage.getItem(LS_KEYS.father);
+      const b = localStorage.getItem(LS_KEYS.couple);
+      if(a) fatherImg.src = a; if(b) coupleImg.src = b;
+    }
+
+    restore();
+    fatherInput && fatherInput.addEventListener('change', ()=> setImgFromFile(fatherInput, fatherImg, LS_KEYS.father));
+    coupleInput && coupleInput.addEventListener('change', ()=> setImgFromFile(coupleInput, coupleImg, LS_KEYS.couple));
   </script>
 </body>
 </html>
